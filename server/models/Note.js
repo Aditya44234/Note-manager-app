@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";
-
 
 // Schema for Notes input ,in this way the input of notes will be there
 // and it will be stored in the MongoDB database
@@ -23,6 +21,6 @@ const noteSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Note = mongoose.model("Note", noteSchema);
+const Note = mongoose.model("Notes", noteSchema);
 
 export default Note;

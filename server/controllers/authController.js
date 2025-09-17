@@ -1,13 +1,12 @@
 import User from "../models/user.js";
 import jwt from "jsonwebtoken";
 
-// Register a new user and save its info in the DB
+// Register a new user
 export const register = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
-    //  Check whether the user is present or not
-
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({
@@ -16,66 +15,66 @@ export const register = async (req, res) => {
       });
     }
 
-    // If not then lets create a new USER in the DB
+    // Create new user (password hashed via pre-save middleware)
     const newUser = await User.create({
       name,
       email,
-      password, // We will get the password hased by pre-save middleware
+      password,
     });
 
-    // Generate JWT token for the user
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-      expiresIn: "24hr",
+    // Generate JWT token
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "24h",
     });
+
     res.status(201).json({
       success: true,
-      messsege: "Registration successful",
+      message: "Registration successful",
       token,
       user: {
         id: newUser._id,
-        name: user.name,
-        email: user.email,
+        name: newUser.name,
+        email: newUser.email,
       },
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      messsege: "Registration failed",
+      message: "Registration failed",
       error: error.message,
     });
   }
 };
 
-// for Login of the user
-
+// User login
 export const Login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
       return res.status(400).json({
-        succes: false,
-        messege: "User Not found",
+        success: false,
+        message: "User not found",
       });
     }
 
-    // Verifying the password here
-    const passsMatch = await user.comparePassword(password);
+    // Check password match
+    const passMatch = await user.comparePassword(password);
     if (!passMatch) {
       return res.status(401).json({
         success: false,
-        messege: "Invalid email or password",
+        message: "Invalid email or password",
       });
     }
 
-    // here the token is Genereted
+    // Generate JWT token
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "24hr",
+      expiresIn: "24h",
     });
 
     res.status(200).json({
       success: true,
-      messege: "Login Successfull",
+      message: "Login successful",
       token,
       user: {
         id: user._id,
@@ -86,7 +85,7 @@ export const Login = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      messege: "Login Failed try  again",
+      message: "Login failed, try again",
       error: error.message,
     });
   }

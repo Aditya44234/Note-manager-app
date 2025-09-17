@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
+import authRoutes from "./routes/authRoutes.js";
+import noteRoutes from "./routes/noteRoutes.js";
 const app = express();
 
 // Middleware
@@ -16,9 +18,12 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Serverhii" });
 });
 
-app.get("/about", (req, res) => {
-  res.json({ message: "This is about page" });
-});
+// Using the Routes
+// For registration and login
+app.use("/api/auth", authRoutes);
+
+// For notes management
+app.use("/api/notes", noteRoutes);
 
 // Connect to MongoDB
 mongoose

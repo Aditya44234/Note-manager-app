@@ -39,7 +39,7 @@ export default function NotesList() {
   const deleteNote = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/api/notes/${id}`, {
+      const res = await fetch(`https://note-manager-app-g8id.onrender.com/api/notes/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -70,7 +70,7 @@ export default function NotesList() {
     }
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3000/api/notes/${id}`, {
+      const res = await fetch(`https://note-manager-app-g8id.onrender.com/api/notes/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

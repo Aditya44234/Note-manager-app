@@ -16,7 +16,7 @@ export default function Notes() {
     try {
       setSaveLoading(true);
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/api/notes", {
+      const res = await fetch("https://note-manager-app-g8id.onrender.com/api/notes", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

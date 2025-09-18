@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Eye, EyeOff, Mail, Lock, ArrowRight, Sparkles } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight, FileText } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -41,6 +40,7 @@ const Login = () => {
     } catch (err) {
       setError("Network error");
       console.error("Network error:", err);
+    } finally {
       setLoading(false);
     }
   };
@@ -54,18 +54,22 @@ const Login = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
 
-      <div className="relative z-10 max-w-md w-full">
-        {/* Header */}
-        <div className="text-center mb-8">
+      <div className="font-poppins relative z-10 max-w-md w-full">
+        {/* Header with Notes Icon */}
+        <div className="text-center mb-8 flex flex-col items-center justify-center gap-2">
+          <FileText size={48} className="text-purple-400 m-auto" />
+
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent mb-2">
             Welcome Back
           </h1>
-          <p className="text-purple-300/70 text-lg">Sign in to your account</p>
         </div>
+        <p className="text-purple-300/70 text-lg text-center mb-8">
+          Sign in to your account
+        </p>
 
         {/* Login Form */}
         <div className="bg-white/10 backdrop-blur-xl border border-purple-400/30 rounded-3xl p-8 shadow-2xl">
-          <div className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             {/* Email Field */}
             <div className="space-y-2">
               <label
@@ -133,7 +137,7 @@ const Login = () => {
 
             {/* Login Button */}
             <button
-              onClick={handleSubmit}
+              type="submit"
               disabled={loading || !email.trim() || !password.trim()}
               className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 disabled:from-gray-500 disabled:to-gray-600 disabled:cursor-not-allowed text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2"
             >
@@ -149,7 +153,7 @@ const Login = () => {
                 </>
               )}
             </button>
-          </div>
+          </form>
         </div>
 
         {/* Register Link */}

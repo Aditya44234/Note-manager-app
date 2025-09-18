@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./features/auth/Login";
 import Register from "./features/auth/Register";
 import Notes from "./features/notes/Notes";
+import NotesList from "./features/notes/NotesList";
 
 function RequireAuth({ children }) {
   const token = localStorage.getItem("token");
@@ -25,6 +26,7 @@ export default function App() {
           </RequireAuth>
         }
       />
+      <Route path="/notes-list" element={<NotesList />} />
     </Routes>
   );
 }

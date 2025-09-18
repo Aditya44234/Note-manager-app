@@ -71,12 +71,10 @@ export const updateNote = async (req, res) => {
     }
 
     if (!title || !description) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Both Title and Description are required",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Both Title and Description are required",
+      });
     }
 
     note.title = title;
@@ -87,13 +85,11 @@ export const updateNote = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Note updated successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Note not updated",
-        error: error.message,
-      });
+    res.status(500).json({
+      success: false,
+      message: "Note not updated",
+      error: error.message,
+    });
   }
 };
 
@@ -119,12 +115,10 @@ export const deleteNote = async (req, res) => {
       .status(200)
       .json({ success: true, message: "Note deleted successfully" });
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: "Note not deleted",
-        error: error.message,
-      });
+    res.status(500).json({
+      success: false,
+      message: "Note not deleted",
+      error: error.message,
+    });
   }
 };

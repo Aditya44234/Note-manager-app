@@ -16,7 +16,7 @@ export default function NotesList() {
     async function fetchNotes() {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("http://localhost:3000/api/notes", {
+        const res = await fetch("https://note-manager-app-g8id.onrender.com/api/notes", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) throw new Error("Failed to fetch notes");

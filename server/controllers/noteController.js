@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Note from "../models/note.js";
+import Note from "../models/Note.js";
 
 // To create a new Note in the DB
 export const createNote = async (req, res) => {

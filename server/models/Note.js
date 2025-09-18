@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-// Schema for Notes input ,in this way the input of notes will be there
-// and it will be stored in the MongoDB database
 const noteSchema = new mongoose.Schema(
   {
     title: {

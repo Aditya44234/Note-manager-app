@@ -15,7 +15,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.get("/", (req, res) => {
-  res.json({ message: "Welcome to the Serverhii" });
+  res.json({ message: "Welcome to the Server" });
 });
 
 // Using the Routes

@@ -16,9 +16,12 @@ export default function NotesList() {
     async function fetchNotes() {
       try {
         const token = localStorage.getItem("token");
-        const res = await fetch("https://note-manager-app-g8id.onrender.com/api/notes", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await fetch(
+          "https://note-manager-app-g8id.onrender.com/api/notes",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         if (!res.ok) throw new Error("Failed to fetch notes");
         const data = await res.json();
         setNotes(data.success && Array.isArray(data.notes) ? data.notes : []);
@@ -33,16 +36,19 @@ export default function NotesList() {
 
   const logout = () => {
     localStorage.removeItem("token");
-    navigate("/login"); // Adjust if your login route is different
+    navigate("/login");
   };
 
   const deleteNote = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`https://note-manager-app-g8id.onrender.com/api/notes/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await fetch(
+        `https://note-manager-app-g8id.onrender.com/api/notes/${id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       if (!res.ok) throw new Error("Failed to delete note");
       setNotes((prev) => prev.filter((note) => note._id !== id));
       setConfirmDeleteId(null);
@@ -70,14 +76,17 @@ export default function NotesList() {
     }
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`https://note-manager-app-g8id.onrender.com/api/notes/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ title: editTitle, description: editDesc }),
-      });
+      const res = await fetch(
+        `https://note-manager-app-g8id.onrender.com/api/notes/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ title: editTitle, description: editDesc }),
+        }
+      );
       if (!res.ok) throw new Error("Failed to update note");
       setNotes((prev) =>
         prev.map((note) =>
@@ -92,7 +101,16 @@ export default function NotesList() {
     }
   };
 
-  if (loading) return <div>Loading notes...</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+        <div
+          className="w-16 h-16 border-4 border-purple-400 border-t-transparent rounded-full animate-spin"
+          role="status"
+          aria-label="Loading"
+        />
+      </div>
+    );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 p-6">
@@ -173,7 +191,7 @@ export default function NotesList() {
                       <Edit className="w-5 h-5" />
                     </button>
                     <button
-                      onClick={() => setConfirmDeleteId(note._id)} // open confirm modal
+                      onClick={() => setConfirmDeleteId(note._id)}
                       className="p-2 text-purple-300 hover:text-red-400 hover:bg-red-400/10 rounded-lg"
                       aria-label="Delete note"
                     >

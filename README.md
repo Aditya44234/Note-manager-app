@@ -1,61 +1,99 @@
- 
-# Notes Manager App (MERN Stack)
+# 📚 Notes Manager App (MERN Stack)
 
-## Description
-A simple full-stack web application allowing users to register, log in, and manage personal notes with create, read, update, and delete (CRUD) operations. The backend uses Node.js, Express, MongoDB, and JWT for authentication, while the frontend is built with React and Vite.
+A simple and secure **full-stack web application** where users can register, log in, and manage personal notes with full **CRUD (Create, Read, Update, Delete)** functionality.  
 
-## Features
-- User registration and login with email and password
-- Secure JWT-based authentication
-- Add, view, edit, and delete personal notes
-- Protected API routes for authenticated users
-- Optional admin features to monitor users and notes (bonus)
+Built using **React (Vite)** for the frontend and **Node.js, Express, MongoDB, and JWT authentication** for the backend.
 
-## Installation
+---
 
-### Backend
-1. Navigate to the `server` directory
-2. Run `npm install` to install dependencies
-3. Create a `.env` file with necessary environment variables (e.g., MongoDB URI, JWT secret)
-4. Run `npm run dev` or `node app.js` to start the backend server
+## 🚀 Features
+- User registration and login with email + password  
+- Secure JWT-based authentication  
+- Create, view, edit, and delete personal notes  
+- Protected API routes for authenticated users  
+- Logout option  
+- (Bonus - Not implemented due to time) Admin features: view all users & notes, delete inappropriate notes  
 
-### Frontend
-1. Navigate to the `client` directory
-2. Run `npm install` to install frontend dependencies
-3. Run `npm run dev` to start the React Vite development server
+---
 
-## Usage
-- Open the frontend app in your browser (usually at `http://localhost:5173`)
-- Register a new user or login
-- Use the dashboard to create, view, edit, or delete notes
+## 🛠 Tech Stack
+**Frontend:** React (Vite), React Router, Axios  
+**Backend:** Node.js, Express, MongoDB, Mongoose, JWT  
+**Deployment Support:** Netlify / Vercel (frontend), Render / Heroku (backend)  
 
-## APIs Overview
-- `POST /api/auth/register` — Register new user
-- `POST /api/auth/login` — Login user and get JWT
-- `POST /api/notes` — Create a new note (protected)
-- `GET /api/notes` — Get all notes of logged-in user (protected)
-- `PUT /api/notes/:id` — Update a note (protected)
-- `DELETE /api/notes/:id` — Delete a note (protected)
+---
 
-## Tech Stack
-- Node.js, Express
-- MongoDB, Mongoose
-- JSON Web Tokens (JWT)
-- React, Vite
-- Axios for API requests
+## ⚙️ Installation & Setup
 
-## Deployment
-- Frontend and backend can be deployed separately on platforms like Netlify, Vercel (frontend), and Heroku, Render, or DigitalOcean (backend).
-- Make sure environment variables are set appropriately in the hosting environment.
+### Prerequisites
+- Node.js and npm installed  
+- MongoDB instance (local or Atlas cloud)  
 
-## Future Improvements
-- Add user roles for admin and standard users
-- Implement pagination and search for notes
-- Add rich text editor to notes
-- Improve UI/UX and add mobile responsiveness
+### Backend Setup
+1. Navigate to backend folder:  
+2. Install dependencies:  
+3. Create `.env` file in the `server` directory with:  
 
-## Author
-- Created by Aditya Joshi
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+PORT=5000
 
-## License
-This project is licensed under the MIT License.
+4. Run the backend server:  
+    # npm run dev
+
+    API will run on: `http://localhost:5000`
+
+### Frontend Setup
+1. Navigate to frontend folder:  
+2. Install dependencies:  
+React app runs on: `http://localhost:5173`
+
+---
+
+## 📖 Usage
+1. Open frontend in browser: `http://localhost:5173`  
+2. Register a new account (email + password) or login with existing credentials  
+3. On dashboard, you can:  
+- Create notes with **title + description**  
+- View your notes list  
+- Edit or delete any note  
+- Logout anytime  
+
+---
+
+## 📡 API Endpoints
+
+### Authentication
+- `POST /api/auth/register` → Register new user  
+- `POST /api/auth/login` → Login user & get JWT  
+
+### Notes
+- `POST /api/notes` → Create a new note (protected)  
+- `GET /api/notes` → Get all notes of logged-in user (protected)  
+- `PUT /api/notes/:id` → Update note by ID (protected)  
+- `DELETE /api/notes/:id` → Delete note by ID (protected)  
+
+---
+
+## 🌐 Deployment
+- **Frontend** → Deploy on [Netlify](https://www.netlify.com/) or [Vercel](https://vercel.com/)  
+- **Backend** → Deploy on [Render](https://render.com/), [Heroku](https://www.heroku.com/), or similar platforms  
+- Set proper `.env` values for production (MongoDB URI, JWT secret, frontend URL CORS, etc.)  
+
+---
+
+## 🔮 Future Improvements
+- Add admin role & dashboard  
+- Pagination & search for notes  
+- Rich text editor support  
+- Mobile responsive UI with better styling  
+
+---
+
+## 👨‍💻 Author
+Developed by **Aditya Joshi**  
+
+---
+
+## 📜 License
+This project is licensed under the MIT License.  
